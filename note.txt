@@ -1,0 +1,32 @@
+ <ul>
+    createMenuItem() {
+    <li class="dropdown">
+        <button class="dropBtn"></button>
+        <ul class="dropdown-content" id=menu.id>
+            <li>
+                <button></button>
+            </li>
+            ... sub menu's button
+        </ul>
+    </li>
+    ...other button
+    }
+    burger:
+    <li class="dropdown">
+        <button class="dropBtn">☰</button>
+        <ul class="dropdown-content" id="burgerMenu">
+            createMenuItem() {
+            <li class="has-submenu">
+                <button class="dropBtn"></button>
+                <ul class="dropdown-submenu left" id=menu.id>
+                    <li>
+                        <button></button>
+                    </li>
+                    ...other button
+                </ul>
+            </li>
+            ... sub menu's button
+            }
+        </ul>
+    </li>
+</ul>
