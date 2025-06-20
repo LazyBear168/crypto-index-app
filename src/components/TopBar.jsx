@@ -97,17 +97,32 @@ function Topbar () {
   const [visibleCount, setVisibleCount] = useState(11);
   const visibleMenus = sharedMenus.filter(m => m.type !== 'logo').slice(0, visibleCount);
   const overflowMenus = sharedMenus.filter(m => m.type !== 'logo').slice(visibleCount);
-  
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
+  // For language switch
+  const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
+  const [showLanguagePopup, setShowLanguagePopup] = useState(false);
+
+  // For dark mode
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  // Click outside anywhere to close sub menu
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(event.target))
-        setOpenMenu(null);
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) setOpenMenu(null);
     }
     document.addEventListener("click", handleClickOutside);
 
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
+  // Decide how many bitton will shown
   useEffect(() => {
     const breakpoints = [
       {max: 620, count:1 },
@@ -133,14 +148,31 @@ function Topbar () {
     return () => window.removeEventListener(`resize`, updateVisibleCount);
   },[])
 
-  const renderSubItems = (items) => {
+  const renderSubItems = (items, className='dropdown-content') => {
     return (
-      <ul role="menu" className="dropdown-content">
-        {items.map((item, index) => (
-          <li key={index}>
-            <button role="menuitem">{item}</button>
-          </li>
-        ))}
+      <ul role="menu" className={className}>
+        {items.map((item, index) => {
+          const isDarkToggle = item.includes("Dark mode") || item.includes("Light mode");
+          const itemInnerText = isDarkToggle ? theme === "dark" ? "Light mode ☀️" : "Dark mode 🌙" : item;
+          const isLanguage = item ==="Language";
+
+          return (
+            <li key={index}>
+              <button
+              role="menuitem"
+              onClick={() => {
+                if (isDarkToggle) {
+                  setTheme(theme === "dark" ? "light" : "dark");
+                } else if (isLanguage) {
+                  setShowLanguagePopup(true);
+                }
+              }}
+              >
+                {itemInnerText}
+              </button>
+            </li>
+          )
+        })}
       </ul>
     );
   }
@@ -157,8 +189,9 @@ function Topbar () {
                 <a href={menu.href} className={menu.class}></a>
               </li>
             );
+          }else {
+            return null;
           }
-          return null;
         })}
         {/* Visible Menus */}
         {visibleMenus.map((menu) => (
@@ -184,7 +217,9 @@ function Topbar () {
 
         {/* Burger Menu */}
         {overflowMenus.length > 0 && (
-          <li className="dropdown">
+          <li className="dropdown"
+          onMouseEnter={() => openMenu && setOpenMenu("burgerMenu")}
+          >
             <button
             className="dropBtn"
             aria-haspopup="true"
@@ -200,30 +235,41 @@ function Topbar () {
                 {overflowMenus.map((menu) => {
                   const isSubmenuOpen = openMenu === menu.id;
                   return (
-                    <li className="has-submenu" key={menu.id}>
+                    <li 
+                    className="has-submenu" 
+                    key={menu.id}
+                    onMouseEnter={() => openMenu && setOpenMenu(menu.id)}
+                    >
                       <button
-                        className="dropBtn"
-                        onClick={() => setOpenMenu(isSubmenuOpen ? 'burgerMenu' : menu.id)}
+                      className="dropBtn"
+                      onClick={() => setOpenMenu(isSubmenuOpen ? 'burgerMenu' : menu.id)}
                       >
                         {menu.label}
                       </button>
-                      {isSubmenuOpen && renderSubItems(menu.items)}
+                      {isSubmenuOpen && renderSubItems(menu.items, 'dropdown-submenu left')}
                     </li>
                   );
                 })}
               </ul>
             )}
-
           </li>
         )}
       </ul>
+      {showLanguagePopup && (
+        <div className="language-popup-overlay" onClick={() => setShowLanguagePopup(false)}>
+          <div className="language-popup" onClick={(e) => e.stopPropagation()}>
+            <h3>Select Language</h3>
+            <button onClick={() => { setLanguage("zh"); localStorage.setItem("language", "zh"); setShowLanguagePopup(false); }}>
+              中文
+            </button>
+            <button onClick={() => { setLanguage("en"); localStorage.setItem("language", "en"); setShowLanguagePopup(false); }}>
+              English
+            </button>
+          </div>
+        </div>
+      )}
     </nav>
   )
-
-  
 }
-
-
-
 
 export default Topbar;
