@@ -1,0 +1,10 @@
+/* File name: globals.css */
+/* Author: sunny */
+
+/* Global reset */
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(213, 213, 213);
+    margin: 0;
+    padding: 0;
+}

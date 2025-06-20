@@ -1,0 +1,59 @@
+/* File name: dark-mode.css */
+/* Author: sunny */
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+body.dark-mode .topBarWrapper {
+    background-color: #2a2a2a;
+}
+body.dark-mode .dropdown-content,
+body.dark-mode .dropdown-submenu {
+    background-color: #333;
+    color: #eee;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+body.dark-mode .topBarWrapper button {
+    color: white;
+}
+body.dark-mode .topBarWrapper button:hover,
+body.dark-mode .dropdown-content button:hover,
+body.dark-mode .dropdown-submenu button:hover {
+    background-color: #444;
+    color: #ff6666;
+}
+
+body.dark-mode .logo-img {
+    background-image: url("../src/assets/crypto_shine_white-removebg-preview.png");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    margin-top: 3px;
+}
+
+body.dark-mode .language-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(33, 32, 32);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+body.dark-mode .language-popup {
+  background: rgba(0, 0, 0, 0.211);
+  padding: 20px;
+  border-radius: 10px;
+  min-width: 200px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}

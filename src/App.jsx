@@ -1,5 +1,7 @@
-import './App.css'
-import TopBar from "./components/TopBar";
+import './styles/globals.css'
+import './styles/reset.css'
+import './styles/dark-mode.css'
+import TopBar from './components/Topbar/TopBar';
 
 function App() {
   return (
