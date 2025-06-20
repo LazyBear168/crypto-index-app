@@ -42,7 +42,7 @@
 
 /* Logo */
 .logo-img {
-    background-image: url("../src/assets/crypto_shine-removebg-preview.png");
+    background-image: url("/assets/crypto_shine-removebg-preview.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;

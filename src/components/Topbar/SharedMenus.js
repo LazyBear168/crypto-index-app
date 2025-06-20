@@ -1,4 +1,4 @@
-/* File name: SharedMenu.js */
+/* File name: SharedMenus.js */
 /* Author: sunny */
 
 const sharedMenus = [
@@ -9,80 +9,122 @@ const sharedMenus = [
     class: "logo-img"
   },
   {
-    label: "general Mode",
+    labelKey: "menu.generalMode",
     aria: "Design mode selection",
     id: "generalMode",
-    items: ["Professional", "Project"],
+    items: [
+      { key: "submenu.professional" },
+      { key: "submenu.project" }
+    ],
     hidePriority: 1
   },
   {
-    label: "⚙️",
+    labelKey: "menu.settings",
     aria: "Settings menu",
     id: "settingsMenu",
-    items: ["Language", "Currency", "Dark mode 🌙"],
+    items: [
+      { key: "submenu.language", type: "language" },
+      { key: "submenu.currency", type: "currency" },
+      { key: "submenu.darkMode", type: "toggle-dark" }
+    ],
     hidePriority: 2
   },
   {
-    label: "Index",
+    labelKey: "menu.index",
     aria: "Token index and market overview",
     id: "menuIndex",
-    items: ["Top Tokens", "Trending Coins", "New Listings"],
+    items: [
+      { key: "submenu.topTokens" },
+      { key: "submenu.trendingCoins" },
+      { key: "submenu.newListings" }
+    ],
     hidePriority: 3
   },
   {
-    label: "K-line",
+    labelKey: "menu.kline",
     aria: "Candlestick chart views",
     id: "menuKLine",
-    items: ["BTC/USDT", "ETH/USDT", "Customize Pair"],
+    items: [
+      { key: "submenu.btcUsdt" },
+      { key: "submenu.ethUsdt" },
+      { key: "submenu.customPair" }
+    ],
     hidePriority: 4
   },
   {
-    label: "Market",
+    labelKey: "menu.market",
     aria: "Crypto market data",
     id: "menuMarket",
-    items: ["Spot Market", "Futures Market", "DEX Market"],
+    items: [
+      { key: "submenu.spotMarket" },
+      { key: "submenu.futuresMarket" },
+      { key: "submenu.dexMarket" }
+    ],
     hidePriority: 5
   },
   {
-    label: "Exchanges",
+    labelKey: "menu.exchanges",
     aria: "Exchange rankings and statistics",
     id: "menuExchanges",
-    items: ["Centralized Exchanges", "Decentralized Exchanges", "Volume Rankings"],
+    items: [
+      { key: "submenu.cex" },
+      { key: "submenu.dex" },
+      { key: "submenu.volumeRankings" }
+    ],
     hidePriority: 6
   },
   {
-    label: "Positions",
+    labelKey: "menu.positions",
     aria: "Open interest and position data",
     id: "menuPositions",
-    items: ["Long vs Short Ratio", "Top Traders", "Exchange Positions"],
+    items: [
+      { key: "submenu.longShortRatio" },
+      { key: "submenu.topTraders" },
+      { key: "submenu.exchangePositions" }
+    ],
     hidePriority: 7
   },
   {
-    label: "Funding Rate",
+    labelKey: "menu.fundingRate",
     aria: "Funding rates across perpetual markets",
     id: "menuFundingRate",
-    items: ["BTC Funding", "ETH Funding", "All Pairs"],
+    items: [
+      { key: "submenu.btcFunding" },
+      { key: "submenu.ethFunding" },
+      { key: "submenu.allPairs" }
+    ],
     hidePriority: 8
   },
   {
-    label: "Liquidation data",
+    labelKey: "menu.liquidations",
     aria: "Liquidations across exchanges",
     id: "menuLiquidations",
-    items: ["24H Liquidations", "Exchange Summary", "By Asset"],
+    items: [
+      { key: "submenu.liquidation24h" },
+      { key: "submenu.exchangeSummary" },
+      { key: "submenu.byAsset" }
+    ],
     hidePriority: 9
   },
   {
-    label: "data",
+    labelKey: "menu.data",
     aria: "Advanced blockchain and on-chain data",
     id: "menuData",
-    items: ["Gas Fees", "Stablecoin Flow", "Whale Activity"],
+    items: [
+      { key: "submenu.gasFees" },
+      { key: "submenu.stablecoinFlow" },
+      { key: "submenu.whaleActivity" }
+    ],
     hidePriority: 10
   },
   {
-    label: "About",
+    labelKey: "menu.about",
     aria: "About the author and feedback options",
     id: "QAboutAuthor",
-    items: ["Author", "Report an Issue"],
+    items: [
+      { key: "submenu.author" },
+      { key: "submenu.reportIssue" }
+    ],
     hidePriority: 11
   }
 ];

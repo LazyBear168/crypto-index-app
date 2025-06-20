@@ -3,6 +3,7 @@
 
 /* Global reset */
 import React, { useEffect, useState, useRef } from "react";
+import { useTranslation } from 'react-i18next';
 
 /* Referencing Local Object */
 import './Topbar.css';
@@ -12,6 +13,7 @@ import LanguagePopup from "./LanguagePopup";
 
 function Topbar () {
 
+  const { t, i18n } = useTranslation();
   const [openMenu, setOpenMenu] = useState(null);
   const wrapperRef = useRef(null);
   const [visibleCount, setVisibleCount] = useState(11);
@@ -22,7 +24,6 @@ function Topbar () {
   const [theme, setTheme] = useDarkMode();
   
   // For language switch
-  const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
   const [showLanguagePopup, setShowLanguagePopup] = useState(false);
 
   // Click outside anywhere to close sub menu
@@ -35,7 +36,7 @@ function Topbar () {
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
-  // Decide how many bitton will shown
+  // Decide how many button will shown
   useEffect(() => {
     const breakpoints = [
       {max: 620, count:1 },
@@ -65,13 +66,18 @@ function Topbar () {
     return (
       <ul role="menu" className={className}>
         {items.map((item, index) => {
-          const isDarkToggle = item.includes("Dark mode") || item.includes("Light mode");
-          const itemInnerText = isDarkToggle ? theme === "dark" ? "Light mode ☀️" : "Dark mode 🌙" : item;
-          const isLanguage = item ==="Language";
+          const isDarkToggle = item.type === "toggle-dark";
+          const isLanguage = item.type === "language";
+          const itemInnerText = isDarkToggle
+            ? theme === "dark"
+              ? t("submenu.lightMode", "Light mode ☀️")
+              : t("submenu.darkMode", "Dark mode 🌙")
+            : t(item.key);
 
           return (
             <li key={index}>
               <button
+              type="button"
               role="menuitem"
               onClick={() => {
                 if (isDarkToggle) {
@@ -121,7 +127,7 @@ function Topbar () {
             aria-label={menu.aria}
             onClick={() => setOpenMenu(openMenu === menu.id ? null : menu.id)}
             >
-              {menu.label}
+              {t(menu.labelKey)}
             </button>
             {/* Render selected menu */}
             {openMenu === menu.id && renderSubItems(menu.items)}
@@ -157,7 +163,7 @@ function Topbar () {
                       className="dropBtn"
                       onClick={() => setOpenMenu(isSubmenuOpen ? 'burgerMenu' : menu.id)}
                       >
-                        {menu.label}
+                        {t(menu.labelKey)}
                       </button>
                       {isSubmenuOpen && renderSubItems(menu.items, 'dropdown-submenu left')}
                     </li>
@@ -171,7 +177,7 @@ function Topbar () {
       {showLanguagePopup && (
         <LanguagePopup
         onSelect={(lang) => {
-          setLanguage(lang);
+          i18n.changeLanguage(lang);
           localStorage.setItem("language", lang);
           setShowLanguagePopup(false);
         }}

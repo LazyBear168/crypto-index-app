@@ -26,7 +26,7 @@ body.dark-mode .dropdown-submenu button:hover {
 }
 
 body.dark-mode .logo-img {
-    background-image: url("../src/assets/crypto_shine_white-removebg-preview.png");
+    background-image: url("/assets/crypto_shine_white-removebg-preview.png");
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
