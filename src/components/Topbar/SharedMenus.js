@@ -45,9 +45,9 @@ const sharedMenus = [
     aria: "Candlestick chart views",
     id: "menuKLine",
     items: [
-      { key: "submenu.btcUsdt" },
-      { key: "submenu.ethUsdt" },
-      { key: "submenu.customPair" }
+      { key: "submenu.btcUsdt", type: "route", route: "BTC/USDT" },
+      { key: "submenu.ethUsdt", type: "route", route: "ETH/USDT" },
+      { key: "submenu.customPair", type: "route", route: "CUSTOM" }
     ],
     hidePriority: 4
   },

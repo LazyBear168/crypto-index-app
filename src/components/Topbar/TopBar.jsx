@@ -11,7 +11,7 @@ import sharedMenus from "./SharedMenus";
 import useDarkMode from "./useDarkMode";
 import LanguagePopup from "./LanguagePopup";
 
-function Topbar () {
+function Topbar ({onSelectMenuItem}) {
 
   const { t, i18n } = useTranslation();
   const [openMenu, setOpenMenu] = useState(null);
@@ -68,6 +68,7 @@ function Topbar () {
         {items.map((item, index) => {
           const isDarkToggle = item.type === "toggle-dark";
           const isLanguage = item.type === "language";
+          const isRoute = item.type === "route";
           const itemInnerText = isDarkToggle
             ? theme === "dark"
               ? t("submenu.lightMode", "Light mode ☀️")
@@ -84,6 +85,8 @@ function Topbar () {
                   setTheme(theme === "dark" ? "light" : "dark");
                 } else if (isLanguage) {
                   setShowLanguagePopup(true);
+                } else if (isRoute && onSelectMenuItem) {
+                  onSelectMenuItem(item.route);
                 }
               }}
               >
