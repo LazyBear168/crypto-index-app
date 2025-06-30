@@ -9,22 +9,11 @@ const sharedMenus = [
     class: "logo-img"
   },
   {
-    labelKey: "menu.generalMode",
-    aria: "Design mode selection",
-    id: "generalMode",
-    items: [
-      { key: "submenu.professional" },
-      { key: "submenu.project" }
-    ],
-    hidePriority: 1
-  },
-  {
     labelKey: "menu.settings",
     aria: "Settings menu",
     id: "settingsMenu",
     items: [
       { key: "submenu.language", type: "language" },
-      { key: "submenu.currency", type: "currency" },
       { key: "submenu.darkMode", type: "toggle-dark" }
     ],
     hidePriority: 2
@@ -34,9 +23,9 @@ const sharedMenus = [
     aria: "Token index and market overview",
     id: "menuIndex",
     items: [
-      { key: "submenu.topTokens" },
-      { key: "submenu.trendingCoins" },
-      { key: "submenu.newListings" }
+      { key: "submenu.topTokens", type: "route", route: "topTokens" },
+      { key: "submenu.trendingCoins", type: "route", route: "trendingCoins" },
+      { key: "submenu.newListings" , type: "route", route: "newListings" }
     ],
     hidePriority: 3
   },
@@ -46,8 +35,7 @@ const sharedMenus = [
     id: "menuKLine",
     items: [
       { key: "submenu.btcUsdt", type: "route", route: "BTC/USDT" },
-      { key: "submenu.ethUsdt", type: "route", route: "ETH/USDT" },
-      { key: "submenu.customPair", type: "route", route: "CUSTOM" }
+      { key: "submenu.ethUsdt", type: "route", route: "ETH/USDT" }
     ],
     hidePriority: 4
   },
@@ -56,9 +44,8 @@ const sharedMenus = [
     aria: "Crypto market data",
     id: "menuMarket",
     items: [
-      { key: "submenu.spotMarket" },
-      { key: "submenu.futuresMarket" },
-      { key: "submenu.dexMarket" }
+      { key: "submenu.spotMarket", type: "route", route: "spotMarket" },
+      { key: "submenu.futuresMarket", type: "route", route: "futuresMarket"}
     ],
     hidePriority: 5
   },
@@ -67,9 +54,7 @@ const sharedMenus = [
     aria: "Exchange rankings and statistics",
     id: "menuExchanges",
     items: [
-      { key: "submenu.cex" },
-      { key: "submenu.dex" },
-      { key: "submenu.volumeRankings" }
+      { key: "submenu.cex", type: "route", route: "CentralizedExchanges" },
     ],
     hidePriority: 6
   },
@@ -78,9 +63,8 @@ const sharedMenus = [
     aria: "Open interest and position data",
     id: "menuPositions",
     items: [
-      { key: "submenu.longShortRatio" },
-      { key: "submenu.topTraders" },
-      { key: "submenu.exchangePositions" }
+      { key: "submenu.longShortRatio", type: "route", route: "longShortRatio" },
+      { key: "submenu.topTraders", type: "route", route: "topTraders" }
     ],
     hidePriority: 7
   },
@@ -89,41 +73,16 @@ const sharedMenus = [
     aria: "Funding rates across perpetual markets",
     id: "menuFundingRate",
     items: [
-      { key: "submenu.btcFunding" },
-      { key: "submenu.ethFunding" },
-      { key: "submenu.allPairs" }
+      { key: "submenu.allPairs", type: "route", route: "allPairs" }
     ],
     hidePriority: 8
-  },
-  {
-    labelKey: "menu.liquidations",
-    aria: "Liquidations across exchanges",
-    id: "menuLiquidations",
-    items: [
-      { key: "submenu.liquidation24h" },
-      { key: "submenu.exchangeSummary" },
-      { key: "submenu.byAsset" }
-    ],
-    hidePriority: 9
-  },
-  {
-    labelKey: "menu.data",
-    aria: "Advanced blockchain and on-chain data",
-    id: "menuData",
-    items: [
-      { key: "submenu.gasFees" },
-      { key: "submenu.stablecoinFlow" },
-      { key: "submenu.whaleActivity" }
-    ],
-    hidePriority: 10
   },
   {
     labelKey: "menu.about",
     aria: "About the author and feedback options",
     id: "QAboutAuthor",
     items: [
-      { key: "submenu.author" },
-      { key: "submenu.reportIssue" }
+      { key: "submenu.author" }
     ],
     hidePriority: 11
   }

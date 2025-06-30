@@ -1,0 +1,29 @@
+.top-container {
+  padding: 16px;
+  background: var(--bg-color, #f9f9f9);
+  border-radius: 8px;
+  margin: 24px auto;
+  max-width: 600px;
+}
+
+.top-container h2 {
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.top-list {
+  list-style: none;
+  padding: 0;
+}
+
+.top-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 0;
+  border-bottom: 1px solid #ccc;
+}
+
+.top-list li {
+    margin-top: 10px;
+}
