@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
+import { useTranslation } from "react-i18next";
 
 function KLineChart({ pair }) {
   const [series, setSeries] = useState([]);
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [loading, setLoading] = useState(false);
+  const { t, i18n } = useTranslation();
 
   const getEndpoint = (pair) => {
-  const symbol = pair.split('/')[0].toLowerCase(); // e.g., 'BTC/USDT' -> 'btc'
-  return `https://crypto-index-backend.onrender.com/kline/${symbol}`;
+    const symbol = pair.split("/")[0].toLowerCase(); // e.g., 'BTC/USDT' -> 'btc'
+    return `https://crypto-index-backend.onrender.com/kline/${symbol}`;
   };
-
 
   const fetchKlineData = async (start, end) => {
     try {
@@ -23,7 +24,7 @@ function KLineChart({ pair }) {
       const data = await res.json();
 
       const transformed = data.map((item) => ({
-        x: new Date(item.timestamp),
+        x: new Date(item.timestamp).getTime(),
         y: [
           Number(item.open),
           Number(item.high),
@@ -67,33 +68,54 @@ function KLineChart({ pair }) {
     fetchKlineData(newStart.toISOString(), newEnd.toISOString());
   };
 
+  const isDark = document.body.classList.contains("dark-mode");
+
   const chartOptions = {
     chart: {
       type: "candlestick",
       height: 350,
+      background: "transparent",
+      toolbar: {
+        show: false,
+      },
       zoom: {
         enabled: true,
         type: "x",
         autoScaleYaxis: true,
       },
-      toolbar: {
-        show: false, // Hide toolbar before function complete
-        tools: {
-          zoom: true,
-          pan: true,
-          reset: true,
-        },
-      },
+    },
+    theme: {
+      mode: isDark ? "dark" : "light",
     },
     title: {
-      text: `${pair} Hourly Candlestick`,
+      text: `${pair} ${t("KLineChart.HourlyCandlestick")}`,
       align: "left",
+      style: {
+        color: isDark ? "#f0f0f0" : "#000",
+      },
     },
     xaxis: {
       type: "datetime",
+      labels: {
+        datetimeUTC: true,
+        format: "yyyy-MM-dd",
+        style: {
+          colors: isDark ? "#ccc" : "#333",
+        },
+      },
     },
     yaxis: {
-      tooltip: { enabled: true },
+      tooltip: {
+        enabled: true,
+      },
+      labels: {
+        style: {
+          colors: isDark ? "#ccc" : "#333",
+        },
+      },
+    },
+    tooltip: {
+      theme: isDark ? "dark" : "light",
     },
   };
 
@@ -101,46 +123,54 @@ function KLineChart({ pair }) {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h2 style={{ marginBottom: "16px" }}>K-Line Chart: {pair}</h2>
+      <h2 style={{ marginBottom: "16px" }}>
+        {t("KLineChart.title", { name: pair })}
+      </h2>
       <div style={{ marginBottom: "12px" }}>
-        <button 
-          onClick={handleLoadOlder} 
-          disabled={loading} 
-          style={{ 
-            marginRight: "10px",   
+        <button
+          onClick={handleLoadOlder}
+          disabled={loading}
+          style={{
+            marginRight: "10px",
             background: "white",
             border: "none",
             boxShadow: "2px 2px 5px rgba(0,0,0,0.2)",
             width: "150px",
             borderRadius: "5px",
             cursor: "pointer",
-            fontSize: "16px"
+            fontSize: "16px",
           }}
         >
-          ← Load Older
+          {t("KLineChart.loadOrder")}
         </button>
-        <button 
-          onClick={handleLoadNewer} 
+        <button
+          onClick={handleLoadNewer}
           disabled={loading}
           style={{
-          background: "white",
-          border: "none",
-          boxShadow: "2px 2px 5px rgba(0,0,0,0.2)",
-          width: "150px",
-          borderRadius: "5px",
-          cursor: "pointer",
-          fontSize: "16px"
-        }}
+            background: "white",
+            border: "none",
+            boxShadow: "2px 2px 5px rgba(0,0,0,0.2)",
+            width: "150px",
+            borderRadius: "5px",
+            cursor: "pointer",
+            fontSize: "16px",
+          }}
         >
-          Load Newer → 
+          {t("KLineChart.loadNewer")}
         </button>
       </div>
       {startDate && endDate && (
-        <div style={{ marginBottom: "8px", fontSize: "14px", color: "#666" }}>
-          Current display: {startDate.toLocaleDateString()} ~ {endDate.toLocaleDateString()}
+        <div style={{ marginBottom: "8px", fontSize: "14px", color: "white" }}>
+          {t("KLineChart.Currentdisplay")}: {startDate.toLocaleDateString()} ~{" "}
+          {endDate.toLocaleDateString()}
         </div>
       )}
-      <Chart options={chartOptions} series={series} type="candlestick" height={350} />
+      <Chart
+        options={chartOptions}
+        series={series}
+        type="candlestick"
+        height={350}
+      />
     </div>
   );
 }

@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import "./TokenList.css"; // reuse styles
+import { VscWorkspaceTrusted } from "react-icons/vsc";
+import { BsBarChartLineFill } from "react-icons/bs";
+import { MdComputer } from "react-icons/md";
+import { useTranslation } from "react-i18next";
 
 export default function CentralizedExchanges() {
-  const [dexes, setDexes] = useState([]);
+  const [exchanges, setExchanges] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/exchanges?category=dex&per_page=10&page=1"
-    )
+    fetch("https://api.coingecko.com/api/v3/exchanges?per_page=10&page=1")
       .then((res) => res.json())
       .then((data) => {
-        setDexes(data);
+        setExchanges(data); // ✅ fixed here
         setLoading(false);
       })
       .catch((err) => {
@@ -24,20 +27,51 @@ export default function CentralizedExchanges() {
 
   return (
     <div className="top-container">
-      <h2>🌐 Top 10 DEX Centralized Exchanges by 24h Volume</h2>
+      <h2>{t("CentralizedExchanges.title")}</h2>
       <ul className="top-list">
-        {dexes.map((dex, index) => (
-          <li key={dex.id} className="top-item">
-            <span>{index + 1}.</span>
-            <img src={dex.image} alt={dex.name} width="20" />
-            <strong>{dex.name}</strong>
+        {exchanges.map((exchange, index) => (
+          <li key={exchange.id} className="top-item">
+            <span className="titleNumber">
+              {index + 1}.{" "}
+              <img src={exchange.image} alt={exchange.name} width="20" />
+            </span>
+            <div style={{ width: "100px" }}>
+              <strong>{exchange.name}</strong>
+            </div>
             <div>
-              🌍 Trust Score: {dex.trust_score}
-              <br />
-              🔁 24h Volume (BTC):{" "}
-              {parseFloat(dex.trade_volume_24h_btc).toFixed(2)} BTC
-              <br />
-              🪙 Coins: {dex.coins_count} | Pairs: {dex.pairs_count}
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <VscWorkspaceTrusted
+                  size={20}
+                  color=" orange"
+                  style={{ margin: "4px" }}
+                />{" "}
+                {t("CentralizedExchanges.TrustScore")}: {exchange.trust_score}
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsBarChartLineFill
+                  size={20}
+                  color=" green"
+                  style={{ margin: "4px" }}
+                />{" "}
+                {t("CentralizedExchanges.24hVolume")}:{" "}
+                {parseFloat(exchange.trade_volume_24h_btc).toFixed(2)} BTC
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <MdComputer
+                  size={20}
+                  color=" orange"
+                  style={{ margin: "4px" }}
+                />{" "}
+                {t("CentralizedExchanges.Website")}:{" "}
+                <a
+                  href={exchange.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {exchange.url.replace(/^https?:\/\//, "")}
+                </a>
+              </div>
             </div>
           </li>
         ))}

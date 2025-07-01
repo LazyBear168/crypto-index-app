@@ -1,10 +1,12 @@
 // File: src/components/TrendingCoins.jsx
 import { useEffect, useState } from "react";
 import "./TokenList.css";
+import { useTranslation } from "react-i18next";
 
 export default function TrendingCoins() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     fetch("https://api.coingecko.com/api/v3/search/trending")
@@ -23,18 +25,24 @@ export default function TrendingCoins() {
 
   return (
     <div className="top-container">
-      <h2>📈 Trending Coins (Most searched coins in the last 24 hours)</h2>
+      <h2>{t("newListing.title")}</h2>
       <ul className="top-list">
         {coins.map((coinObj, index) => {
           const coin = coinObj.item;
           return (
             <li key={coin.id} className="top-item">
-              <span>{index + 1}.</span>
-              <img src={coin.thumb} alt={coin.name} width="20" />
-              <strong>
-                {coin.name} ({coin.symbol.toUpperCase()})
-              </strong>
-              <span>Rank #{coin.market_cap_rank ?? "—"}</span>
+              <span className="titleNumber">
+                {index + 1}.
+                <img src={coin.thumb} alt={coin.name} width="20" />
+              </span>
+              <div style={{ width: "250px" }}>
+                <strong>
+                  {coin.name} ({coin.symbol.toUpperCase()})
+                </strong>
+              </div>
+              <div>
+                <span>Rank #{coin.market_cap_rank ?? "—"}</span>
+              </div>
             </li>
           );
         })}

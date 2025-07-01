@@ -44,5 +44,56 @@
     "whaleActivity": "巨鯨活動",
     "author": "作者",
     "reportIssue": "回報問題"
+  },
+  "topTokens": {
+  "title": "前 {{count}} 大加密貨幣"
+  },
+  "trendingCoins": {
+    "title": "熱門幣種（過去 24 小時搜尋最多）"
+  },
+  "newListing": {
+    "title": "最新上架（最近新增的市場幣種）"
+  },
+  "KLineChart": {
+    "title": "K線圖：{{name}}",
+    "loadOrder": "← 載入較舊資料",
+    "loadNewer": "載入較新資料 →",
+    "Currentdisplay": "目前顯示",
+    "HourlyCandlestick": "每小時蠟燭圖"
+  },
+  "SpotMarket": {
+    "title": "現貨市場：前10大加密貨幣",
+    "Price": "價格",
+    "Volume": "24小時交易量",
+    "Change": "24小時漲跌幅"
+  },
+  "FuturesMarket": {
+    "title": "合約市場（幣安）",
+    "Price": "價格",
+    "Volume": "24小時交易量",
+    "Change": "24小時漲跌幅"
+  },
+  "CentralizedExchanges": {
+    "title": "前10大中心化交易所（依24小時交易量）",
+    "TrustScore": "信任分數",
+    "24hVolume": "24小時交易量（BTC）",
+    "Website": "官方網站"
+  },
+  "LongShortRatio": {
+    "title": "多空比（1小時）— 前10大合約交易對",
+    "Long": "多單",
+    "Short": "空單",
+    "Ratio": "比率（多單 / 空單）"
+  },
+  "TopTrader": {
+    "title": "頂尖交易者倉位比（1小時）— 前10大合約交易對",
+    "Long": "多單",
+    "Short": "空單",
+    "Ratio": "比率（多單 / 空單）"
+  },
+  "FundingRates": {
+    "title": "資金費率 – 前10大合約交易對",
+    "Rate": "費率",
+    "Time": "時間"
   }
 }

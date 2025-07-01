@@ -1,18 +1,32 @@
-// File: src/components/LongShortRatio.jsx
 import { useEffect, useState } from "react";
 import "./TokenList.css"; // reuse styling
-
-const symbols = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT"];
+import { useTranslation } from "react-i18next";
 
 export default function LongShortRatio() {
   const [ratios, setRatios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     async function fetchRatios() {
       try {
+        // Step 1: Get top 10 USDT pairs by quote volume
+        const marketRes = await fetch(
+          "https://fapi.binance.com/fapi/v1/ticker/24hr"
+        );
+        const marketData = await marketRes.json();
+        const topSymbols = marketData
+          .filter(
+            (item) =>
+              item.symbol.endsWith("USDT") && parseFloat(item.lastPrice) > 0
+          )
+          .sort((a, b) => parseFloat(b.quoteVolume) - parseFloat(a.quoteVolume))
+          .slice(0, 10)
+          .map((item) => item.symbol);
+
+        // Step 2: Fetch long/short ratio for each top symbol
         const results = await Promise.all(
-          symbols.map((symbol) =>
+          topSymbols.map((symbol) =>
             fetch(
               `https://fapi.binance.com/futures/data/globalLongShortAccountRatio?symbol=${symbol}&period=1h&limit=1`
             )
@@ -25,6 +39,7 @@ export default function LongShortRatio() {
               }))
           )
         );
+
         setRatios(results);
         setLoading(false);
       } catch (err) {
@@ -40,16 +55,25 @@ export default function LongShortRatio() {
 
   return (
     <div className="top-container">
-      <h2>📊 Long vs Short Ratio (1h)</h2>
+      <h2>{t("LongShortRatio.title")}</h2>
       <ul className="top-list">
         {ratios.map(({ symbol, long, short, ratio }, index) => (
           <li key={symbol} className="top-item">
             <span>{index + 1}.</span>
-            <strong>{symbol}</strong>
-            <div>
-              🟩 Long: {(long * 100).toFixed(1)}% <br />
-              🟥 Short: {(short * 100).toFixed(1)}% <br />
-              ⚖️ Ratio (Long / Short): {ratio.toFixed(2)}
+            <div style={{ width: "180px", alignItems: "left" }}>
+              <strong>{symbol}</strong>
+            </div>
+
+            <div style={{ minWidth: "400px" }}>
+              <div>
+                🟩 {t("LongShortRatio.Long")}: {(long * 100).toFixed(1)}%
+              </div>
+              <div>
+                🟥 {t("LongShortRatio.Short")}: {(short * 100).toFixed(1)}%
+              </div>
+              <div>
+                ⚖️ {t("LongShortRatio.Ratio")}: {ratio.toFixed(2)}
+              </div>
             </div>
           </li>
         ))}

@@ -1,10 +1,12 @@
 // File: src/components/TokenList.jsx
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./TokenList.css";
 
 export default function TokenList({ limit = 10 }) {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     fetch(
@@ -25,16 +27,20 @@ export default function TokenList({ limit = 10 }) {
 
   return (
     <div className="top-container">
-      <h2>Top {limit} Cryptocurrencies</h2>
+      <h2>{t("topTokens.title", { count: limit })}</h2>
+
       <ul className="top-list">
         {coins.map((coin, i) => (
-          <li key={coin.id}>
-            <span>{i + 1}. </span>
-            <img src={coin.image} alt={coin.name} width="20" />
-            <strong>
-              {coin.name} ({coin.symbol.toUpperCase()})
-            </strong>
-            : ${coin.current_price.toLocaleString()}
+          <li key={coin.id} className="top-item">
+            <span className="titleNumber">
+              {i + 1}. <img src={coin.image} alt={coin.name} width="20" />
+            </span>
+            <div style={{ width: "250px" }}>
+              <strong>
+                {coin.name} ({coin.symbol.toUpperCase()}):
+              </strong>
+            </div>
+            <div>${coin.current_price.toLocaleString()}</div>
           </li>
         ))}
       </ul>

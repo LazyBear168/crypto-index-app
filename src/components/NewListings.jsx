@@ -1,10 +1,12 @@
 // File: src/components/NewListings.jsx
 import { useEffect, useState } from "react";
 import "./TokenList.css"; // reuse same styles
+import { useTranslation } from "react-i18next";
 
 export default function NewListings() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     fetch(
@@ -32,16 +34,21 @@ export default function NewListings() {
 
   return (
     <div className="top-container">
-      <h2>🆕 New Listings (Recent Market Additions)</h2>
+      <h2>{t("trendingCoins.title")}</h2>
       <ul className="top-list">
         {coins.map((coin, index) => (
           <li key={coin.id} className="top-item">
-            <span>{index + 1}.</span>
-            <img src={coin.image} alt={coin.name} width="20" />
-            <strong>
-              {coin.name} ({coin.symbol.toUpperCase()})
-            </strong>
-            <span>${coin.current_price.toLocaleString()}</span>
+            <span className="titleNumber">
+              {index + 1}.<img src={coin.image} alt={coin.name} width="20" />
+            </span>
+            <div style={{ width: "250px" }}>
+              <strong>
+                {coin.name} ({coin.symbol.toUpperCase()})
+              </strong>
+            </div>
+            <duv>
+              <span>${coin.current_price.toLocaleString()}</span>
+            </duv>
           </li>
         ))}
       </ul>

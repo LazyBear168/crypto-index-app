@@ -1,27 +1,17 @@
 // File: src/components/SpotMarket.jsx
 import { useEffect, useState } from "react";
 import "./TokenList.css"; // reuse styling
+import { BsCoin, BsBarChartLineFill } from "react-icons/bs";
+import { RiExchangeLine } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 export default function SpotMarket() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    const ids = [
-      "bitcoin",
-      "ethereum",
-      "tether",
-      "binancecoin",
-      "solana",
-      "ripple",
-      "dogecoin",
-      "cardano",
-      "toncoin",
-      "avalanche-2",
-    ];
-    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=${ids.join(
-      ","
-    )}`;
+    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1`;
 
     fetch(url)
       .then((res) => res.json())
@@ -39,29 +29,50 @@ export default function SpotMarket() {
 
   return (
     <div className="top-container">
-      <h2>💱 Spot Market: Top 10 Cryptocurrencies</h2>
+      <h2>{t("SpotMarket.title")}</h2>
       <ul className="top-list">
         {coins.map((coin, index) => (
           <li key={coin.id} className="top-item">
-            <span>{index + 1}.</span>
-            <img src={coin.image} alt={coin.name} width="20" />
-            <strong>
-              {coin.name} ({coin.symbol.toUpperCase()})
-            </strong>
+            <span className="titleNumber">
+              {index + 1}.
+              <img src={coin.image} alt={coin.name} width="20" />
+            </span>
+            <div style={{ width: "150px", alignItems: "left" }}>
+              <strong>
+                {coin.name} ({coin.symbol.toUpperCase()})
+              </strong>
+            </div>
+
             <div>
-              💵 Price: ${coin.current_price.toLocaleString()}
-              <br />
-              🔁 Volume (24h): ${coin.total_volume.toLocaleString()}
-              <br />
-              📈 Change (24h):{" "}
-              <span
-                style={{
-                  color:
-                    coin.price_change_percentage_24h >= 0 ? "green" : "red",
-                }}
-              >
-                {coin.price_change_percentage_24h?.toFixed(2)}%
-              </span>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsCoin size={20} color=" orange" style={{ margin: "4px" }} />{" "}
+                {t("SpotMarket.Price")}: ${coin.current_price.toLocaleString()}
+              </div>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <BsBarChartLineFill
+                  size={20}
+                  color=" green"
+                  style={{ margin: "4px" }}
+                />{" "}
+                {t("SpotMarket.Volume")}: ${coin.total_volume.toLocaleString()}
+              </div>
+
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <RiExchangeLine
+                  size={24}
+                  color=" blue"
+                  style={{ margin: "4px" }}
+                />{" "}
+                {t("SpotMarket.Change")}:{" "}
+                <span
+                  style={{
+                    color:
+                      coin.price_change_percentage_24h >= 0 ? "green" : "red",
+                  }}
+                >
+                  {coin.price_change_percentage_24h?.toFixed(2)}%
+                </span>
+              </div>
             </div>
           </li>
         ))}

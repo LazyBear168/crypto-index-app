@@ -44,5 +44,56 @@
     "whaleActivity": "Whale Activity",
     "author": "Author",
     "reportIssue": "Report an Issue"
+  },
+  "topTokens": {
+    "title": "Top {{count}} Cryptocurrencies"
+  },
+  "trendingCoins": {
+    "title": "Trending Coins (Most searched coins in the last 24 hours)"
+  },
+  "newListing": {
+    "title":"New Listings (Recent Market Additions)"
+  },
+  "KLineChart": {
+    "title":"K-Line Chart: {{name}}",
+    "loadOrder": "← Load Older",
+    "loadNewer": "Load Newer →",
+    "Currentdisplay": "Current display",
+    "HourlyCandlestick": "Hourly Candlestick"
+  },
+  "SpotMarket": {
+    "title":"Spot Market: Top 10 Cryptocurrencies",
+    "Price": "Price",
+    "Volume": "Volume (24h)",
+    "Change": "Change (24h)"
+  },
+  "FuturesMarket": {
+    "title":"Futures Market (Binance)",
+    "Price": "Price",
+    "Volume": "Volume (24h)",
+    "Change": "Change (24h)"
+  },
+  "CentralizedExchanges": {
+    "title":"Top 10 Centralized Exchanges by 24h Volume",
+    "TrustScore":"Trust Score",
+    "24hVolume": "24h Volume (BTC)",
+    "Website": "Website"
+  },
+  "LongShortRatio": {
+    "title":"Long vs Short Ratio (1h) — Top 10 Futures Pairs",
+    "Long":"Long",
+    "Short": "Short",
+    "Ratio": "Ratio (Long / Short)"
+  },
+  "TopTrader": {
+    "title":"Top Trader Position Ratio (1h) — Top 10 Futures Pairs",
+    "Long":"Long",
+    "Short": "Short",
+    "Ratio": "Ratio (Long / Short)"
+  },
+  "FundingRates": {
+    "title":"Funding Rates – Top 10 Futures Pairs",
+    "Rate": "Rate",
+    "Time": "Time"
   }
 }
