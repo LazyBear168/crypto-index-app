@@ -4,25 +4,20 @@ import "./TokenList.css"; // reuse styling
 import { BsCoin, BsBarChartLineFill } from "react-icons/bs";
 import { RiExchangeLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import mockData from "../mock/coins.json";
+import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function SpotMarket() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
   const { t, i18n } = useTranslation();
+  const isMock = coins.length > 0 && coins.every((coin) => coin.isMock);
 
   useEffect(() => {
     const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=10&page=1`;
-
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => {
-        setCoins(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error("Failed to fetch spot market data:", err);
-        setLoading(false);
-      });
+    fetchWithFallback(url, mockData)
+      .then((data) => setCoins(data))
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading spot market data...</p>;
@@ -30,6 +25,12 @@ export default function SpotMarket() {
   return (
     <div className="top-container">
       <h2>{t("SpotMarket.title")}</h2>
+      {isMock && (
+        <div style={{ color: "orange", fontSize: "12px" }}>
+          ⚠️ Displaying fallback (mock) data.
+        </div>
+      )}
+
       <ul className="top-list">
         {coins.map((coin, index) => (
           <li key={coin.id} className="top-item">
@@ -59,11 +60,11 @@ export default function SpotMarket() {
 
               <div style={{ display: "flex", alignItems: "center" }}>
                 <RiExchangeLine
-                  size={24}
+                  size={20}
                   color=" blue"
                   style={{ margin: "4px" }}
                 />{" "}
-                {t("SpotMarket.Change")}:{" "}
+                {t("SpotMarket.Change")}:&nbsp;
                 <span
                   style={{
                     color:

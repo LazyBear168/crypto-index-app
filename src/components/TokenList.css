@@ -33,7 +33,7 @@
 
 .titleNumber {
   display: flex;
-  align-items: left;
+  align-items: center;
   width: 50px;
 }
 

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "binance",
+    "name": "Binance",
+    "image": "https://assets.coingecko.com/markets/images/52/small/binance.jpg",
+    "trust_score": 10,
+    "trade_volume_24h_btc": 123456.78,
+    "url": "https://www.binance.com",
+    "isMock": true
+  },
+  {
+    "id": "coinbase_exchange",
+    "name": "Coinbase Exchange",
+    "image": "https://assets.coingecko.com/markets/images/1/small/coinbase.jpg",
+    "trust_score": 10,
+    "trade_volume_24h_btc": 65432.10,
+    "url": "https://www.coinbase.com",
+    "isMock": true
+  },
+  {
+    "id": "kraken",
+    "name": "Kraken",
+    "image": "https://assets.coingecko.com/markets/images/29/small/kraken.jpg",
+    "trust_score": 10,
+    "trade_volume_24h_btc": 40000.55,
+    "url": "https://www.kraken.com",
+    "isMock": true
+  },
+  {
+    "id": "bitfinex",
+    "name": "Bitfinex",
+    "image": "https://assets.coingecko.com/markets/images/4/small/bitfinex.jpg",
+    "trust_score": 9,
+    "trade_volume_24h_btc": 32200.75,
+    "url": "https://www.bitfinex.com",
+    "isMock": true
+  },
+  {
+    "id": "bybit",
+    "name": "Bybit",
+    "image": "https://assets.coingecko.com/markets/images/698/small/bybit.jpg",
+    "trust_score": 9,
+    "trade_volume_24h_btc": 28500.30,
+    "url": "https://www.bybit.com",
+    "isMock": true
+  },
+  {
+    "id": "okx",
+    "name": "OKX",
+    "image": "https://assets.coingecko.com/markets/images/465/small/okex.jpg",
+    "trust_score": 10,
+    "trade_volume_24h_btc": 27000.00,
+    "url": "https://www.okx.com",
+    "isMock": true
+  },
+  {
+    "id": "kucoin",
+    "name": "KuCoin",
+    "image": "https://assets.coingecko.com/markets/images/62/small/kucoin.jpg",
+    "trust_score": 8,
+    "trade_volume_24h_btc": 22500.10,
+    "url": "https://www.kucoin.com",
+    "isMock": true
+  },
+  {
+    "id": "bitstamp",
+    "name": "Bitstamp",
+    "image": "https://assets.coingecko.com/markets/images/3/small/bitstamp.jpg",
+    "trust_score": 9,
+    "trade_volume_24h_btc": 18000.80,
+    "url": "https://www.bitstamp.net",
+    "isMock": true
+  },
+  {
+    "id": "gate",
+    "name": "Gate.io",
+    "image": "https://assets.coingecko.com/markets/images/50/small/gate.jpg",
+    "trust_score": 8,
+    "trade_volume_24h_btc": 15500.45,
+    "url": "https://www.gate.io",
+    "isMock": true
+  },
+  {
+    "id": "mexc",
+    "name": "MEXC",
+    "image": "https://assets.coingecko.com/markets/images/731/small/mexc.jpg",
+    "trust_score": 7,
+    "trade_volume_24h_btc": 13000.00,
+    "url": "https://www.mexc.com",
+    "isMock": true
+  }
+]

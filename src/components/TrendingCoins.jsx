@@ -2,50 +2,64 @@
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { useTranslation } from "react-i18next";
+import mockData from "../mock/trending.json";
+import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function TrendingCoins() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    fetch("https://api.coingecko.com/api/v3/search/trending")
-      .then((res) => res.json())
+    const url = "https://api.coingecko.com/api/v3/search/trending";
+    fetchWithFallback(url, mockData)
       .then((data) => {
-        setCoins(data.coins || []);
-        setLoading(false);
+        // If real data, extract coin.item[] → flatten into the same format
+        if (data?.coins) {
+          const realCoins = data.coins.map((c) => ({
+            id: c.item.id,
+            name: c.item.name,
+            symbol: c.item.symbol,
+            thumb: c.item.thumb,
+            market_cap_rank: c.item.market_cap_rank,
+          }));
+          setCoins(realCoins);
+        } else {
+          setCoins(data); // mockData
+        }
       })
-      .catch((err) => {
-        console.error("Failed to fetch trending coins:", err);
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading trending coins...</p>;
 
   return (
     <div className="top-container">
-      <h2>{t("newListing.title")}</h2>
+      <h2>{t("trendingCoins.title")}</h2>
+
+      {coins[0]?.isMock && (
+        <div style={{ fontSize: "12px", color: "orange" }}>
+          ⚠️ Displaying fallback (mock) data.
+        </div>
+      )}
+
       <ul className="top-list">
-        {coins.map((coinObj, index) => {
-          const coin = coinObj.item;
-          return (
-            <li key={coin.id} className="top-item">
-              <span className="titleNumber">
-                {index + 1}.
-                <img src={coin.thumb} alt={coin.name} width="20" />
-              </span>
-              <div style={{ width: "250px" }}>
-                <strong>
-                  {coin.name} ({coin.symbol.toUpperCase()})
-                </strong>
-              </div>
-              <div>
-                <span>Rank #{coin.market_cap_rank ?? "—"}</span>
-              </div>
-            </li>
-          );
-        })}
+        {coins.map((coin, index) => (
+          <li key={coin.id} className="top-item">
+            <span className="titleNumber">
+              {index + 1}.&nbsp;
+              <img src={coin.thumb} alt={coin.name} width="20" />
+            </span>
+            <div style={{ width: "250px" }}>
+              <strong>
+                {coin.name} ({coin.symbol.toUpperCase()})
+              </strong>
+            </div>
+            <div>
+              <span>Rank #{coin.market_cap_rank ?? "—"}</span>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );

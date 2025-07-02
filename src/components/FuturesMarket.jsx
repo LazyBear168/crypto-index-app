@@ -1,18 +1,21 @@
 // File: src/components/FuturesMarket.jsx
 import { useEffect, useState } from "react";
-import "./TokenList.css"; // Reuse styles
+import "./TokenList.css";
 import { BsCoin, BsBarChartLineFill } from "react-icons/bs";
 import { RiExchangeLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import mockData from "../mock/futures.json";
+import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function FuturesMarket() {
   const [symbols, setSymbols] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    fetch("https://fapi.binance.com/fapi/v1/ticker/24hr")
-      .then((res) => res.json())
+    const url = "https://fapi.binance.com/fapi/v1/ticker/24hr";
+
+    fetchWithFallback(url, mockData)
       .then((data) => {
         const top = data
           .filter(
@@ -23,12 +26,8 @@ export default function FuturesMarket() {
           .slice(0, 10);
 
         setSymbols(top);
-        setLoading(false);
       })
-      .catch((err) => {
-        console.error("Failed to fetch futures market data:", err);
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading futures market data...</p>;
@@ -36,6 +35,11 @@ export default function FuturesMarket() {
   return (
     <div className="top-container">
       <h2>{t("FuturesMarket.title")}</h2>
+      {symbols[0]?.isMock && (
+        <div style={{ color: "orange", fontSize: "12px" }}>
+          ⚠️ Displaying fallback (mock) data.
+        </div>
+      )}
       <ul className="top-list">
         {symbols.map((item, index) => (
           <li key={item.symbol} className="top-item">
@@ -46,7 +50,7 @@ export default function FuturesMarket() {
 
             <div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <BsCoin size={20} color=" orange" style={{ margin: "4px" }} />{" "}
+                <BsCoin size={20} color=" orange" style={{ margin: "4px" }} />
                 {t("FuturesMarket.Price")}: $
                 {parseFloat(item.lastPrice).toLocaleString()}
               </div>
@@ -55,17 +59,17 @@ export default function FuturesMarket() {
                   size={20}
                   color=" green"
                   style={{ margin: "4px" }}
-                />{" "}
+                />
                 {t("FuturesMarket.Volume")}:{" "}
                 {parseFloat(item.volume).toLocaleString()}
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <RiExchangeLine
-                  size={24}
+                  size={20}
                   color=" blue"
                   style={{ margin: "4px" }}
-                />{" "}
-                {t("FuturesMarket.Change")}:{" "}
+                />
+                {t("FuturesMarket.Change")}:&nbsp;
                 <span
                   style={{
                     color: item.priceChangePercent >= 0 ? "green" : "red",

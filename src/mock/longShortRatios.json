@@ -1,0 +1,72 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "long": 0.57,
+    "short": 0.43,
+    "ratio": 1.32,
+    "isMock": true
+  },
+  {
+    "symbol": "ETHUSDT",
+    "long": 0.51,
+    "short": 0.49,
+    "ratio": 1.04,
+    "isMock": true
+  },
+  {
+    "symbol": "SOLUSDT",
+    "long": 0.62,
+    "short": 0.38,
+    "ratio": 1.63,
+    "isMock": true
+  },
+  {
+    "symbol": "XRPUSDT",
+    "long": 0.48,
+    "short": 0.52,
+    "ratio": 0.92,
+    "isMock": true
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "long": 0.55,
+    "short": 0.45,
+    "ratio": 1.22,
+    "isMock": true
+  },
+  {
+    "symbol": "ADAUSDT",
+    "long": 0.46,
+    "short": 0.54,
+    "ratio": 0.85,
+    "isMock": true
+  },
+  {
+    "symbol": "AVAXUSDT",
+    "long": 0.50,
+    "short": 0.50,
+    "ratio": 1.00,
+    "isMock": true
+  },
+  {
+    "symbol": "MATICUSDT",
+    "long": 0.53,
+    "short": 0.47,
+    "ratio": 1.13,
+    "isMock": true
+  },
+  {
+    "symbol": "LINKUSDT",
+    "long": 0.59,
+    "short": 0.41,
+    "ratio": 1.44,
+    "isMock": true
+  },
+  {
+    "symbol": "TONUSDT",
+    "long": 0.52,
+    "short": 0.48,
+    "ratio": 1.08,
+    "isMock": true
+  }
+]

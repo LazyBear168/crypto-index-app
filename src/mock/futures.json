@@ -1,0 +1,82 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "lastPrice": "65000",
+    "quoteVolume": "4500000000",
+    "volume": "50000",
+    "priceChangePercent": "2.5",
+    "isMock": true
+  },
+  {
+    "symbol": "ETHUSDT",
+    "lastPrice": "3500",
+    "quoteVolume": "3000000000",
+    "volume": "40000",
+    "priceChangePercent": "-1.1",
+    "isMock": true
+  },
+  {
+    "symbol": "SOLUSDT",
+    "lastPrice": "150",
+    "quoteVolume": "1200000000",
+    "volume": "10000",
+    "priceChangePercent": "3.2",
+    "isMock": true
+  },
+  {
+    "symbol": "XRPUSDT",
+    "lastPrice": "0.6",
+    "quoteVolume": "900000000",
+    "volume": "1500000",
+    "priceChangePercent": "-0.8",
+    "isMock": true
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "lastPrice": "0.12",
+    "quoteVolume": "750000000",
+    "volume": "3000000",
+    "priceChangePercent": "4.0",
+    "isMock": true
+  },
+  {
+    "symbol": "ADAUSDT",
+    "lastPrice": "0.45",
+    "quoteVolume": "600000000",
+    "volume": "2000000",
+    "priceChangePercent": "1.7",
+    "isMock": true
+  },
+  {
+    "symbol": "AVAXUSDT",
+    "lastPrice": "28",
+    "quoteVolume": "550000000",
+    "volume": "18000",
+    "priceChangePercent": "0.9",
+    "isMock": true
+  },
+  {
+    "symbol": "MATICUSDT",
+    "lastPrice": "0.8",
+    "quoteVolume": "500000000",
+    "volume": "2500000",
+    "priceChangePercent": "-2.3",
+    "isMock": true
+  },
+  {
+    "symbol": "LINKUSDT",
+    "lastPrice": "14",
+    "quoteVolume": "480000000",
+    "volume": "35000",
+    "priceChangePercent": "2.0",
+    "isMock": true
+  },
+  {
+    "symbol": "TONUSDT",
+    "lastPrice": "6",
+    "quoteVolume": "460000000",
+    "volume": "40000",
+    "priceChangePercent": "5.5",
+    "isMock": true
+  }
+]

@@ -1,0 +1,82 @@
+[
+  {
+    "id": "bitcoin",
+    "name": "Bitcoin",
+    "symbol": "btc",
+    "thumb": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png",
+    "market_cap_rank": 1,
+    "isMock": true
+  },
+  {
+    "id": "ethereum",
+    "name": "Ethereum",
+    "symbol": "eth",
+    "thumb": "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png",
+    "market_cap_rank": 2,
+    "isMock": true
+  },
+  {
+    "id": "solana",
+    "name": "Solana",
+    "symbol": "sol",
+    "thumb": "https://assets.coingecko.com/coins/images/4128/thumb/solana.png",
+    "market_cap_rank": 5,
+    "isMock": true
+  },
+  {
+    "id": "ripple",
+    "name": "XRP",
+    "symbol": "xrp",
+    "thumb": "https://assets.coingecko.com/coins/images/44/thumb/xrp-symbol-white-128.png",
+    "market_cap_rank": 7,
+    "isMock": true
+  },
+  {
+    "id": "cardano",
+    "name": "Cardano",
+    "symbol": "ada",
+    "thumb": "https://assets.coingecko.com/coins/images/975/thumb/cardano.png",
+    "market_cap_rank": 8,
+    "isMock": true
+  },
+  {
+    "id": "dogecoin",
+    "name": "Dogecoin",
+    "symbol": "doge",
+    "thumb": "https://assets.coingecko.com/coins/images/5/thumb/dogecoin.png",
+    "market_cap_rank": 9,
+    "isMock": true
+  },
+  {
+    "id": "avalanche-2",
+    "name": "Avalanche",
+    "symbol": "avax",
+    "thumb": "https://assets.coingecko.com/coins/images/12559/thumb/coin-round-red.png",
+    "market_cap_rank": 10,
+    "isMock": true
+  },
+  {
+    "id": "tron",
+    "name": "TRON",
+    "symbol": "trx",
+    "thumb": "https://assets.coingecko.com/coins/images/1094/thumb/tron-logo.png",
+    "market_cap_rank": 11,
+    "isMock": true
+  },
+  {
+    "id": "polkadot",
+    "name": "Polkadot",
+    "symbol": "dot",
+    "thumb": "https://assets.coingecko.com/coins/images/12171/thumb/polkadot.png",
+    "market_cap_rank": 13,
+    "isMock": true
+  },
+  {
+    "id": "chainlink",
+    "name": "Chainlink",
+    "symbol": "link",
+    "thumb": "https://assets.coingecko.com/coins/images/877/thumb/chainlink-new-logo.png",
+    "market_cap_rank": 14,
+    "isMock": true
+  }
+]

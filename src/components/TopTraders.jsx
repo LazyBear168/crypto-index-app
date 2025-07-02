@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import "./TokenList.css"; // reuse styles
+import "./TokenList.css";
 import { useTranslation } from "react-i18next";
+import mockData from "../mock/topTraders.json"; // <-- mock 資料
+import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function TopTraders() {
   const [ratios, setRatios] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
     async function fetchTopTraders() {
       try {
-        // Step 1: Get top 10 USDT futures pairs by volume
-        const marketRes = await fetch(
-          "https://fapi.binance.com/fapi/v1/ticker/24hr"
+        const marketData = await fetchWithFallback(
+          "https://fapi.binance.com/fapi/v1/ticker/24hr",
+          []
         );
-        const marketData = await marketRes.json();
+
         const topSymbols = marketData
           .filter(
             (item) =>
@@ -24,26 +26,31 @@ export default function TopTraders() {
           .slice(0, 10)
           .map((item) => item.symbol);
 
-        // Step 2: Fetch top trader ratio for each symbol
         const results = await Promise.all(
-          topSymbols.map((symbol) =>
-            fetch(
-              `https://fapi.binance.com/futures/data/topLongShortPositionRatio?symbol=${symbol}&period=1h&limit=1`
-            )
-              .then((res) => res.json())
-              .then((data) => ({
-                symbol,
-                long: parseFloat(data[0]?.longAccount ?? 0),
-                short: parseFloat(data[0]?.shortAccount ?? 0),
-                ratio: parseFloat(data[0]?.longShortRatio ?? 0),
-              }))
-          )
+          topSymbols.map(async (symbol) => {
+            const data = await fetchWithFallback(
+              `https://fapi.binance.com/futures/data/topLongShortPositionRatio?symbol=${symbol}&period=1h&limit=1`,
+              []
+            );
+            return {
+              symbol,
+              long: parseFloat(data[0]?.longAccount ?? 0),
+              short: parseFloat(data[0]?.shortAccount ?? 0),
+              ratio: parseFloat(data[0]?.longShortRatio ?? 0),
+            };
+          })
         );
 
-        setRatios(results);
-        setLoading(false);
+        // 若資料無效或為空 → 用 mock
+        if (results.length === 0 || results.some((r) => isNaN(r.ratio))) {
+          setRatios(mockData); // mockData 含 isMock
+        } else {
+          setRatios(results);
+        }
       } catch (err) {
-        console.error("Failed to fetch top trader ratio:", err);
+        console.error("❌ Failed to fetch top trader ratio:", err);
+        setRatios(mockData);
+      } finally {
         setLoading(false);
       }
     }
@@ -56,6 +63,11 @@ export default function TopTraders() {
   return (
     <div className="top-container">
       <h2>{t("TopTrader.title")}</h2>
+      {ratios[0]?.isMock && (
+        <div style={{ color: "orange", fontSize: "12px" }}>
+          ⚠️ Displaying fallback (mock) data.
+        </div>
+      )}
       <ul className="top-list">
         {ratios.map(({ symbol, long, short, ratio }, index) => (
           <li key={symbol} className="top-item">

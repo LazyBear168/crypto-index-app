@@ -1,0 +1,62 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "fundingRate": 0.000018,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "ETHUSDT",
+    "fundingRate": 0.000020,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "SOLUSDT",
+    "fundingRate": -0.000058,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "ALPACAUSDT",
+    "fundingRate": 0.000013,
+    "fundingTime": "2025-06-19T17:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "XRPUSDT",
+    "fundingRate": -0.000055,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "HFTUSDT",
+    "fundingRate": -0.001290,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "HUSDT",
+    "fundingRate": -0.001747,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "fundingRate": -0.000061,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "1000PEPEUSDT",
+    "fundingRate": -0.000002,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  },
+  {
+    "symbol": "MAVUSDT",
+    "fundingRate": -0.000429,
+    "fundingTime": "2025-07-02T08:00:00Z",
+    "isMock": true
+  }
+]

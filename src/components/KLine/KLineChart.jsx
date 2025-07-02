@@ -7,6 +7,7 @@ function KLineChart({ pair }) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [isDark, setIsDark] = useState(false);
   const { t, i18n } = useTranslation();
 
   const getEndpoint = (pair) => {
@@ -45,13 +46,6 @@ function KLineChart({ pair }) {
     }
   };
 
-  useEffect(() => {
-    const now = new Date();
-    const oneWeek = 7 * 24 * 60 * 60 * 1000;
-    const past = new Date(now.getTime() - oneWeek);
-    fetchKlineData(past.toISOString(), now.toISOString());
-  }, [pair]);
-
   const handleLoadOlder = () => {
     if (!startDate) return;
     const oneWeek = 7 * 24 * 60 * 60 * 1000;
@@ -67,8 +61,6 @@ function KLineChart({ pair }) {
     const newEnd = new Date(newStart.getTime() + oneWeek);
     fetchKlineData(newStart.toISOString(), newEnd.toISOString());
   };
-
-  const isDark = document.body.classList.contains("dark-mode");
 
   const chartOptions = {
     chart: {
@@ -119,6 +111,26 @@ function KLineChart({ pair }) {
     },
   };
 
+  useEffect(() => {
+    const now = new Date();
+    const oneWeek = 7 * 24 * 60 * 60 * 1000;
+    const past = new Date(now.getTime() - oneWeek);
+    fetchKlineData(past.toISOString(), now.toISOString());
+  }, [pair]);
+
+  useEffect(() => {
+    const checkDarkMode = () => {
+      setIsDark(document.body.classList.contains("dark-mode"));
+    };
+    checkDarkMode();
+    const observer = new MutationObserver(checkDarkMode);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+    return () => observer.disconnect();
+  }, []);
+
   if (!series.length) return <div>📈 Loading chart...</div>;
 
   return (
@@ -160,7 +172,10 @@ function KLineChart({ pair }) {
         </button>
       </div>
       {startDate && endDate && (
-        <div style={{ marginBottom: "8px", fontSize: "14px", color: "white" }}>
+        <div
+          className="top-item"
+          style={{ marginBottom: "8px", fontSize: "14px" }}
+        >
           {t("KLineChart.Currentdisplay")}: {startDate.toLocaleDateString()} ~{" "}
           {endDate.toLocaleDateString()}
         </div>

@@ -1,54 +1,57 @@
 // File: src/components/NewListings.jsx
 import { useEffect, useState } from "react";
-import "./TokenList.css"; // reuse same styles
+import "./TokenList.css";
 import { useTranslation } from "react-i18next";
+import mockData from "../mock/newListings.json";
+import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function NewListings() {
   const [coins, setCoins] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    fetch(
-      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_asc&per_page=50&page=1"
-    )
-      .then((res) => res.json())
+    const url =
+      "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_asc&per_page=50&page=1";
+
+    fetchWithFallback(url, mockData)
       .then((data) => {
-        // Filter coins that were recently updated (proxy for "new")
         const now = new Date();
         const recentCoins = data.filter((coin) => {
           const updated = new Date(coin.last_updated);
           const hoursAgo = (now - updated) / (1000 * 60 * 60);
-          return hoursAgo < 48; // Updated within last 2 days
+          return hoursAgo < 48; // Within last 2 days
         });
-        setCoins(recentCoins.slice(0, 10)); // Show top 10 recent
-        setLoading(false);
+        setCoins(recentCoins.slice(0, 10));
       })
-      .catch((err) => {
-        console.error("Failed to fetch new listings:", err);
-        setLoading(false);
-      });
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) return <p>Loading new listings...</p>;
 
   return (
     <div className="top-container">
-      <h2>{t("trendingCoins.title")}</h2>
+      <h2>{t("newListing.title")}</h2>
+      {coins[0]?.isMock && (
+        <div style={{ color: "orange", fontSize: "12px" }}>
+          ⚠️ Displaying fallback (mock) data.
+        </div>
+      )}
       <ul className="top-list">
         {coins.map((coin, index) => (
           <li key={coin.id} className="top-item">
             <span className="titleNumber">
-              {index + 1}.<img src={coin.image} alt={coin.name} width="20" />
+              {index + 1}.&nbsp;
+              <img src={coin.image} alt={coin.name} width="20" />
             </span>
             <div style={{ width: "250px" }}>
               <strong>
                 {coin.name} ({coin.symbol.toUpperCase()})
               </strong>
             </div>
-            <duv>
+            <div>
               <span>${coin.current_price.toLocaleString()}</span>
-            </duv>
+            </div>
           </li>
         ))}
       </ul>
