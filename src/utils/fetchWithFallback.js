@@ -1,4 +1,9 @@
 // File: src/utils/fetchWithFallback.js
+// Author: Cheng
+// Description: 
+//    Utility function to fetch data from a given API URL with optional fetch options.
+//    If the request fails (e.g., network error, non-2xx status), it returns the provided fallback data,
+//    and appends an `isMock: true` flag to indicate mock usage.
 
 export async function fetchWithFallback(apiUrl, fallbackData, options = {}) {
   try {
@@ -9,13 +14,12 @@ export async function fetchWithFallback(apiUrl, fallbackData, options = {}) {
   } catch (err) {
     console.warn(`⚠️ Failed to fetch ${apiUrl}, using fallback:`, err.message);
 
-    // 標記 fallback 資料
     if (Array.isArray(fallbackData)) {
       return fallbackData.map((item) => ({ ...item, isMock: true }));
     } else if (typeof fallbackData === "object" && fallbackData !== null) {
       return { ...fallbackData, isMock: true };
     } else {
-      return fallbackData; // primitive 或錯誤型別 fallback 原樣回傳
+      return fallbackData; 
     }
   }
 }

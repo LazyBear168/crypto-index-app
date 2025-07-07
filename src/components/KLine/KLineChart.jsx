@@ -1,3 +1,10 @@
+// File: src/components/KLine/KLineChart.jsx
+// Author: Cheng
+// Description:
+//    React component that displays a candlestick (K-line) chart for a given cryptocurrency pair using ApexCharts.
+//    Fetches historical data from a backend API, supports date navigation (older/newer), auto-detects dark mode,
+//    and provides multilingual labels using react-i18next.
+
 import React, { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 import { useTranslation } from "react-i18next";

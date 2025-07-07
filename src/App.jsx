@@ -1,5 +1,6 @@
-// File name: App.jsx
-// Author: sunny
+// File: App.jsx
+// Author: Cheng
+// Description: Main layout of the crypto index dashboard with conditional rendering based on menu selection.
 
 /* Global reset */
 import { useState } from "react";

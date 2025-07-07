@@ -1,4 +1,9 @@
 // File: src/components/FuturesMarket.jsx
+// Author: Cheng
+// Description:
+//    Displays top 10 USDT futures pairs from Binance based on trading volume.
+//    Shows price, volume, and 24h change with icon-based UI. Uses i18n and fetch fallback for robustness.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { BsCoin, BsBarChartLineFill } from "react-icons/bs";

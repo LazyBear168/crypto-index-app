@@ -1,5 +1,9 @@
-/* File name: SharedMenus.js */
-/* Author: sunny */
+// File: src/components/Topbar/SharedMenus.js
+// Author: Cheng
+// Description: 
+//   Centralized configuration for the top navigation bar, including all menu groups and subitems.
+//   Each entry defines the menu label key, ARIA accessibility label, submenu items, and hidePriority
+//   used to control responsive visibility and interaction type (e.g., route, language switch, dark mode).
 
 const sharedMenus = [
   {

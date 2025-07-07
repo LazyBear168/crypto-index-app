@@ -1,4 +1,10 @@
 // File: src/components/SpotMarket.jsx
+// Author: Cheng
+// Description:
+//    Displays top 10 cryptocurrencies from the CoinGecko spot market ranked by market cap.
+//    Shows each coin's name, price, 24h volume, and 24h price change.
+//    Includes i18n, mock fallback support, and icon-enhanced UI layout.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css"; // reuse styling
 import { BsCoin, BsBarChartLineFill } from "react-icons/bs";

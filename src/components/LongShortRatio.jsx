@@ -1,3 +1,10 @@
+// File: src/components/LongShortRatio.jsx
+// Author: Cheng
+// Description:
+//    Displays the global long/short account ratio for the top 10 USDT futures pairs on Binance.
+//    Fetches real-time data from the Binance API and falls back to mock data when necessary.
+//    Uses i18n for translations and simple visual indicators for clarity.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { useTranslation } from "react-i18next";

@@ -1,4 +1,10 @@
 // File: src/components/NewListings.jsx
+// Author: Cheng
+// Description:
+//    Displays the top 10 newly updated coins from CoinGecko (within the past 48 hours).
+//    Fetches sorted market cap data and filters by last updated timestamp.
+//    Includes i18n support, fallback mock data, and concise UI for symbol and price.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { useTranslation } from "react-i18next";

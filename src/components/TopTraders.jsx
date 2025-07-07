@@ -1,3 +1,10 @@
+// File: src/components/TopTraders.jsx
+// Author: Cheng
+// Description:
+//    Displays top 10 trading pairs' long/short position ratios from Binance's "Top Traders" data.
+//    Shows percentage of long and short accounts along with the long/short ratio.
+//    Includes mock fallback, internationalization support, and structured visual layout.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { useTranslation } from "react-i18next";

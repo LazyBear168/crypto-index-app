@@ -1,4 +1,10 @@
 // File: src/components/TokenList.jsx
+// Author: Cheng
+// Description:
+//   Reusable component that displays a list of top tokens by market cap from CoinGecko.
+//   Accepts a `limit` prop to control how many tokens to display. Supports i18n, loading state,
+//   and fallback to mock data on fetch failure.
+
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "./TokenList.css";

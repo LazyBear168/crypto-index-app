@@ -1,11 +1,17 @@
 // File: src/components/CentralizedExchanges.jsx
+// Author: Cheng
+// Description:
+//    Displays the top 10 centralized crypto exchanges using CoinGecko's public API.
+//    Shows trust score, 24h BTC volume, and official website link with graceful fallback to mock data.
+//    Includes internationalization, loading state, and icon-enhanced layout.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { BsBarChartLineFill } from "react-icons/bs";
 import { MdComputer } from "react-icons/md";
 import { useTranslation } from "react-i18next";
-import mockData from "../mock/exchanges.json"; // ⬅️ 更換成 exchanges mock
+import mockData from "../mock/exchanges.json"; // exchanges mock
 import { fetchWithFallback } from "../utils/fetchWithFallback";
 
 export default function CentralizedExchanges() {

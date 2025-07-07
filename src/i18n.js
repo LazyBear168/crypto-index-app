@@ -1,5 +1,7 @@
-// File name: i18n.js
-// Author: sunny
+// File: src/i18n.js
+// Author: Cheng
+// Description: i18n configuration file for multilingual support using i18next and react-i18next.
+//    Supports English (en) and Chinese (zh), with browser language auto-detection.
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';

@@ -1,4 +1,9 @@
 // File: src/components/AllFundingRates.jsx
+// Author: Cheng
+// Description:
+//   Displays funding rate data for the top 10 USDT futures pairs on Binance.
+//   Fetches live data with fallback to mock data, and includes i18n, loading state, and UI icons for clarity.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { RiExchangeLine } from "react-icons/ri";

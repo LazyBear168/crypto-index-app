@@ -1,4 +1,10 @@
 // File: src/components/TrendingCoins.jsx
+// Author: Cheng
+// Description:
+//    Displays currently trending cryptocurrencies using CoinGecko's /search/trending API.
+//    Extracts coin data from the API structure and shows name, symbol, rank, and icon.
+//    Supports fallback mock data and full internationalization.
+
 import { useEffect, useState } from "react";
 import "./TokenList.css";
 import { useTranslation } from "react-i18next";
