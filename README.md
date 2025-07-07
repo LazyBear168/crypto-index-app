@@ -1,12 +1,120 @@
-# React + Vite
+📈 Crypto Index App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Description**: A responsive, multi-feature crypto dashboard built with React, Binance & CoinGecko APIs, featuring multilingual support and dark mode.  
+**Website**: [https://crypto-index-app.web.app/index.html](https://crypto-index-app.web.app/index.html)  
+**Topics**: React · Binance API · CoinGecko · Crypto Dashboard · Dark Mode · i18n · Charting · Frontend Portfolio  
 
-Currently, two official plugins are available:
+# 📈 Crypto Index App
+A responsive, multi-feature crypto dashboard built with React, showcasing real-time market data using Binance and CoinGecko APIs. Designed for fast performance, clean UI/UX, and international audiences (EN/中文 supported).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Live Demo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+👉 [Open App on Firebase][https://crypto-index-app.web.app/index.html](https://crypto-index-app.web.app/index.html)  
+![App screenshot](public/demo-screenshot.png)
+
+---
+
+## 🛠️ Features
+
+### ✅ Core
+
+- 🔝 **Top Tokens View** — List of top tokens by market cap  
+- 🔍 **Trending Coins** — Live trending search from CoinGecko  
+- 🆕 **New Listings** — Recently updated assets  
+- 📈 **K-Line Chart** — Hourly candlestick charts for BTC/ETH  
+- 💰 **Spot & Futures Market** — Real-time trading data from Binance  
+- 🌐 **Multilingual UI** — Language toggle (English / 中文)  
+- 🌙 **Dark Mode** — Theme toggle for accessibility  
+
+### 🏆 Advanced
+
+- ⚖️ **Long/Short Ratios** — Sentiment data from Binance Futures  
+- 👨‍💻 **Top Traders** — Aggregated long/short positions of Binance top users  
+- 💸 **Funding Rates** — Real-time rates for top USDT pairs  
+- 🏦 **Centralized Exchanges** — Trust-ranked exchanges with volume stats  
+- 🧩 **Mock Fallback System** — Works offline or on API failure using mock data  
+- 🧠 **Responsive Menu** — Dynamic menu with breakpoint-aware overflow handling  
+
+---
+
+## 🧩 Tech Stack
+
+- **Frontend**: React 18, Vite, JSX, CSS Modules  
+- **Charting**: ApexCharts (candlestick)  
+- **Icons**: React Icons  
+- **i18n**: `react-i18next` + `i18next-browser-languagedetector`  
+- **APIs**: Binance Futures API, CoinGecko API  
+- **Deployment**: Firebase Hosting  
+- **Fallback Strategy**: Custom `fetchWithFallback` utility
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+├── App.jsx
+├── components
+│   ├── AllFundingRates.jsx
+│   ├── CentralizedExchanges.jsx
+│   ├── FuturesMarket.jsx
+│   ├── KLine
+│   │   └── KLineChart.jsx
+│   ├── LongShortRatio.jsx
+│   ├── NewListings.jsx
+│   ├── SpotMarket.jsx
+│   ├── TokenList.css
+│   ├── TokenList.jsx
+│   ├── Topbar
+│   │   ├── LanguagePopup.css
+│   │   ├── LanguagePopup.jsx
+│   │   ├── SharedMenus.js
+│   │   ├── Topbar.css
+│   │   ├── TopBar.jsx
+│   │   └── useDarkMode.js
+│   ├── TopTraders.jsx
+│   └── TrendingCoins.jsx
+├── i18n.js
+├── locales
+│   ├── en.json
+│   └── zh.json
+├── main.jsx
+├── mock
+│   ├── coins.json
+│   ├── exchanges.json
+│   ├── fundingRates.json
+│   ├── futures.json
+│   ├── longShortRatios.json
+│   ├── newListings.json
+│   ├── topTraders.json
+│   └── trending.json
+├── styles
+│   ├── dark-mode.css
+│   ├── globals.css
+│   └── reset.css
+└── utils
+    └── fetchWithFallback.js
+```
+
+
+---
+
+## 🧪 Development Setup
+
+1. **Clone repo**
+   ```bash
+   git clone https://github.com/your-username/crypto-index-app.git
+   cd crypto-index-app
+
+   npm install
+   npm run dev
+   npm run build
+
+
+
+  
+
+
+
