@@ -81,15 +81,15 @@ const sharedMenus = [
     ],
     hidePriority: 8
   },
-  {
-    labelKey: "menu.about",
-    aria: "About the author and feedback options",
-    id: "QAboutAuthor",
-    items: [
-      { key: "submenu.author" }
-    ],
-    hidePriority: 11
-  }
+  // {
+  //   labelKey: "menu.about",
+  //   aria: "About the author and feedback options",
+  //   id: "QAboutAuthor",
+  //   items: [
+  //     { key: "submenu.author" }
+  //   ],
+  //   hidePriority: 11
+  // }
 ];
 
 export default sharedMenus;
